@@ -64,7 +64,7 @@ def GenWedge(ofs,rx,ry, facecolor='r',label='',alpha=0.3):
             else:
                 #print dir(Path)
                 codes.append(Path.CURVE4)
-            verts.append([cofs[0]+rx*cos(p+np.pi/2*g),cofs[1]+ry*sin(p+np.pi/2*g)])
+            verts.append([cofs[0]+rx*cos(p+2*np.pi/ngoes*g),cofs[1]+ry*sin(p+2*np.pi/ngoes*g)])
         if (ngoes>1):
             codes.append(Path.CLOSEPOLY)
             verts.append(ofs)
@@ -83,7 +83,7 @@ def GenWedge(ofs,rx,ry, facecolor='r',label='',alpha=0.3):
 w=GenWedge([0,0],1.5,1.5,'y','redshift survey (optical/\nresolved 21-cm)')
 ax.add_artist(w)
 #21cm
-ax.add_artist(GenWedge([0.1,0.1],0.9,1.9,'g','21-cm intensity mapping'))
+ax.add_artist(GenWedge([0.1,0.1],0.9,1.9,'g','21-cm intensity \n mapping'))
 for sign in [+1,-1]:
     w=Rectangle([-0.1,0.1*sign],0.2,1.9*sign,label='21-cm in single dish\n mode')
     w.set_hatch('/')
@@ -96,6 +96,12 @@ plt.plot([0.1,1.1],[-0.1,-0.5],'g:')
 plt.plot([-0.1,-1.1],[-0.1,-0.5],'g:')
 plt.plot([-0.1,-1.1],[0.1,0.5],'g:')
 lhandles.append(h)
+
+#Lya forest
+wlya=GenWedge([0.0,0.2],1.8,1.8,'k','Lyman-$\\alpha$ forest',0.1)
+
+ax.add_artist(wlya)
+
 
 #PZ
 ax.add_artist(GenWedge([0,0],1.5,0.25,'m','photo-z survey'))

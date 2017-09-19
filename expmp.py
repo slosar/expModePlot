@@ -79,9 +79,6 @@ def GenWedge(ofs,rx,ry, facecolor='r',label='',alpha=0.3):
     return w
 
 
-#galaxies
-w=GenWedge([0,0],1.5,1.5,'y','redshift survey (optical/\nresolved 21-cm)')
-ax.add_artist(w)
 #21cm
 ax.add_artist(GenWedge([0.1,0.1],0.9,1.9,'g','21-cm intensity \n mapping'))
 for sign in [+1,-1]:
@@ -91,30 +88,17 @@ for sign in [+1,-1]:
     w.set_color('g')
     ax.add_artist(w)
 lhandles.append(w)
-h,=plt.plot([0.1,1.1],[0.1,0.5],'g:',label='21-cm wedge')
-plt.plot([0.1,1.1],[-0.1,-0.5],'g:')
-plt.plot([-0.1,-1.1],[-0.1,-0.5],'g:')
-plt.plot([-0.1,-1.1],[0.1,0.5],'g:')
+h,=plt.plot([0.1,1.1],[0.1,0.5],'g-',label='21-cm wedge',lw=3)
+plt.plot([0.1,1.1],[-0.1,-0.5],'g-',lw=3)
+plt.plot([-0.1,-1.1],[-0.1,-0.5],'g-',lw=3)
+plt.plot([-0.1,-1.1],[0.1,0.5],'g-',lw=3)
 lhandles.append(h)
-
-#Lya forest
-wlya=GenWedge([0.0,0.2],1.8,1.8,'k','Lyman-$\\alpha$ forest',0.1)
-
-ax.add_artist(wlya)
 
 
 #PZ
 ax.add_artist(GenWedge([0,0],1.5,0.25,'m','photo-z survey'))
-w=GenWedge([0,0],1.5,0.5,'m','low-res survey')
-w.set_color('m')
-w.set_fill(False)
-w.set_linestyle('--')
-w.set_linewidth(3)
-ax.add_artist(w)
-
-#WL
-ax.add_artist(GenWedge([0.0,0.0],2.5,0.03,'c','weak lensing (gals/CMB)'))
 
 plt.legend(handles=lhandles,fontsize=12)
-plt.savefig("expplot.pdf", bbox_inches='tight')
-plt.savefig("expplot.png", bbox_inches='tight')
+plt.tight_layout()
+plt.savefig("expplot_21PZ.pdf", bbox_inches='tight')
+plt.savefig("expplot_21PZ.png", bbox_inches='tight')
